@@ -154,7 +154,7 @@ function ManageVehicule() {
         </button>
       </div>
       {filter && (
-        <div className="lg:w-1/2 flex flex-col lg:text-xl text-lg font-bold">
+        <div className="lg:w-1/2 flex flex-col lg:text-xl text-lg font-bold lg:mb-8 mb-[11vh]">
           <div className="flex flex-col gap-2 border-b-2 border-green p-4">
             <label htmlFor="brand" className="text-blue">
               Modèle du véhicule

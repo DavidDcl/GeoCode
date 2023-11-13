@@ -99,7 +99,7 @@ function StationPopup({
                   stationId,
                 });
               } else {
-                toast.error("Erreur vous n'etes pas connecte");
+                toast.error("Veuillez vous connecter");
               }
             }}
           >

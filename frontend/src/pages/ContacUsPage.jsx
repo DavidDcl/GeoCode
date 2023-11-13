@@ -53,7 +53,9 @@ function ContacUsPage() {
       <div className="w-80 flex flex-col gap-4 mt-2">
         <div>
           <h3 className="text-xl text-blue font-bold">Auteur:</h3>
-          <p className="text-xl text-secondary font-bold">{user.nickname}</p>
+          <p className="text-xl text-secondary font-bold">
+            {user.nickname || user.username}
+          </p>
         </div>
         <form
           onSubmit={handleSubmit}

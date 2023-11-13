@@ -8,7 +8,7 @@ const findOneByEmail = (email) => {
 
 const findOneByUser = (user) => {
   return database.query(
-    `select adress, birth_date birthDate, email, firstname, gender_id genderId, id, lastname, nickname, profile_pic profilePic, register_date registerDate, roles, password from ${table} where nickname = ?`,
+    `select adress, birth_date birthdate, email, firstname, gender_id genderId, id, lastname, nickname username, profile_pic profilePic, register_date registerdate, roles, password from ${table} where nickname = ?`,
     [user]
   );
 };

@@ -15,7 +15,6 @@ function ProfilDetailsPage() {
   });
   const [passwordCheck, setPasswordCheck] = useState(false);
   const [confirmation, setConfirmation] = useState(false);
-  const [checked, setChecked] = useState("");
   const [deleteConfirmation, setDeleteConfirmation] = useState(false);
   const navigate = useNavigate();
   const regexPassword =
@@ -30,17 +29,20 @@ function ProfilDetailsPage() {
     username: user.username,
     profilePic: user.profilePic,
     id: user.id,
+    roles: user.roles,
   });
 
   const handleModal = () => setDeleteConfirmation(!deleteConfirmation);
 
   const handleChange = (e) => {
-    setNewProfil({ ...newProfil, [e.target.id]: e.target.value });
-  };
-
-  const handleClick = (e) => {
-    setNewProfil({ ...newProfil, [e.target.id]: e.target.name });
-    setChecked(parseInt(e.target.name, 10));
+    if (e.target.id === "genderId") {
+      setNewProfil({
+        ...newProfil,
+        [e.target.id]: parseInt(e.target.value, 10),
+      });
+    } else {
+      setNewProfil({ ...newProfil, [e.target.id]: e.target.value });
+    }
   };
 
   const handleChangePassword = (e) => {
@@ -159,9 +161,9 @@ function ProfilDetailsPage() {
                 type="radio"
                 id="genderId"
                 name="1"
-                value={newProfil.genderId || false}
-                checked={checked === 1}
-                onChange={handleClick}
+                value="1"
+                checked={newProfil.genderId === 1}
+                onChange={handleChange}
               />
               <p>Masculin</p>
             </div>
@@ -170,9 +172,9 @@ function ProfilDetailsPage() {
                 type="radio"
                 id="genderId"
                 name="2"
-                value={newProfil.genderId || false}
-                checked={checked === 2}
-                onChange={handleClick}
+                value="2"
+                checked={newProfil.genderId === 2}
+                onChange={handleChange}
               />
               <p>Féminin</p>
             </div>
@@ -181,9 +183,9 @@ function ProfilDetailsPage() {
                 type="radio"
                 id="genderId"
                 name="3"
-                value={newProfil.genderId || false}
-                checked={checked === 3}
-                onChange={handleClick}
+                value="3"
+                checked={newProfil.genderId === 3}
+                onChange={handleChange}
               />
               <p>Non-binaire</p>
             </div>
@@ -258,23 +260,25 @@ function ProfilDetailsPage() {
         <label htmlFor="password" className="font-bold text-blue text-lg">
           Mot de passe
         </label>
-        <div
-          className="flex items-center justify-between tooltip tooltip-accent"
-          data-tip="min 8 char. dont 1 chiffre, 1 majuscule, 1 spécial"
-        >
-          <input
-            type="password"
-            name="password"
-            id="password"
-            placeholder=""
-            value={password.password}
-            onChange={handleChangePassword}
-            className={`input bg-neutral-300 lg:input-md input-sm w-full focus:border-none focus:bg-blue text-secondary focus:text-primary placeholder-secondary focus:placeholder-primary ${
-              password.password.match(regexPassword)
-                ? "border-blue"
-                : "border-rose-700 border-opacity-75"
-            }`}
-          />
+        <div className="flex items-center justify-between">
+          <div
+            data-tip="min 8 char. dont 1 chiffre, 1 majuscule, 1 spécial"
+            className="tooltip tooltip-accent "
+          >
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder=""
+              value={password.password}
+              onChange={handleChangePassword}
+              className={`input bg-neutral-300 lg:input-md input-sm w-full focus:border-none focus:bg-blue text-secondary focus:text-primary placeholder-secondary focus:placeholder-primary ${
+                password.password.match(regexPassword)
+                  ? "border-blue"
+                  : "border-rose-700 border-opacity-75"
+              }`}
+            />
+          </div>
           <button type="button" onClick={handlePass}>
             <svg
               width="64px"

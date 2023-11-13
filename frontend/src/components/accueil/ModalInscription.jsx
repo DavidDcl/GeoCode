@@ -49,17 +49,17 @@ function ModalInscription({ toggleModalInscritpion, toggleModalConnexion }) {
       }
     }
     if (obj.password !== obj.passwordConfirm) {
-      message += "La confirmation du mot de passe ne match pas";
+      message += "Les mots de passe ne correspondent pas.";
     }
     if (obj.password.length < 8) {
-      message += " Votre mot de passe doit faire au minimum 8 caractères";
+      message += " Longueur minimum 8 caractères.";
     }
     const hasDigit = /\d/.test(obj.password);
     const hasUpperCase = /[A-Z]/.test(obj.password);
     const hasSpecialChar = /[+−*/=<>%!@#$^&;:"'(),.~_]/.test(obj.password);
     if (!hasDigit || !hasUpperCase || !hasSpecialChar) {
       message +=
-        " Le mot de passe doit contenir au moins un chiffre, une lettre majuscule et un caractère spécial. Les caract";
+        " Doit contenir au moins 1 chiffre, 1 majuscule, 1 caractère spécial.";
     }
     return message.replace("_", " ");
   };

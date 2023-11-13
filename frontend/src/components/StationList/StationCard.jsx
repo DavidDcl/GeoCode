@@ -110,7 +110,7 @@ function StationCard({
                 if (user) {
                   setIsModalOpen(!isModalOpen);
                 } else {
-                  toast.error("Erreur vous n'etes pas connecte");
+                  toast.error("Veuillez vous connecter");
                 }
               }}
             >

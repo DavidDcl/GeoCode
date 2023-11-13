@@ -69,7 +69,7 @@ function ReservationModal({
       setConfirmation(!confirmation);
     } catch (error) {
       if (error.response.status === 400) {
-        toast.error("Mauvaise date inserer");
+        toast.error("Mauvaise date inserée");
       }
       console.error(error);
     }

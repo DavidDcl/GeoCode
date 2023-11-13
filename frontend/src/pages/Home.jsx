@@ -17,6 +17,9 @@ import ReservationPopUp from "../components/Reservation/ReservationPopUp";
 import StationPopup from "../components/accueil/StationPopup";
 import expressAPI from "../service/expressAPI";
 
+import iconeBorne from "../assets/images/iconeBorne.png";
+import CenterMapButton from "../components/accueil/CenterMapButton";
+
 function Home() {
   const { coordinates, isModalOpen, markers } = useCurrentMapContext();
   const { user } = useCurrentUserContext();
@@ -29,7 +32,7 @@ function Home() {
   useEffect(() => {
     try {
       if (map !== null) {
-        map.flyTo(coordinates, 12);
+        map.flyTo(coordinates, 14);
       }
       (async () => {
         const [latitude, longitude] = coordinates;
@@ -47,7 +50,7 @@ function Home() {
   }, [coordinates]);
 
   const borneIcon = new Icon({
-    iconUrl: "../src/assets/images/iconeBorne.png",
+    iconUrl: iconeBorne,
     iconSize: [35, 40],
   });
 
@@ -67,6 +70,11 @@ function Home() {
           attribution='donn&eacute;es &copy; <a href="//osm.org/copyright">OpenStreetMap</a>/ODbL - rendu <a href="//openstreetmap.fr">OSM France</a>'
           url="//{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
         />
+        <Marker position={coordinates}>
+          <Popup className="your-location rounded-xl">
+            <p>Vous êtes ici</p>
+          </Popup>
+        </Marker>
         <MarkerClusterGroup>
           {markers.map((elem) => (
             <Marker key={elem.id} position={elem.coordonnees} icon={borneIcon}>
@@ -123,6 +131,7 @@ function Home() {
           </div>
         </div>
       )}
+      {map ? <CenterMapButton map={map} center={coordinates} /> : null}
       <div>{displayMap}</div>
       {reservationOpen && (
         <ReservationPopUp

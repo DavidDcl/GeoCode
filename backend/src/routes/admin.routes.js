@@ -34,5 +34,6 @@ router.put("/update-user", adminData.updateOneUser);
 
 router.delete("/remove-vehicle/:id", adminData.removeOneVehicle);
 router.delete("/stations/:id", adminData.deleteStationById);
+router.delete("/remove-user", adminData.removeUserOne);
 
 module.exports = router;
